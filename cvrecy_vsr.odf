@@ -1,0 +1,34 @@
+[GameObjectClass]
+scrapReturn=0
+classLabel = "cvrecy02"
+mass=500000
+
+provideCount=5
+provideName1="cvrecy"
+provideName2="cvrecyvsr"
+provideName3="VIRTUAL_CLASS_RECYCLER"
+provideName4="VIRTUAL_CLASS_RECYCLERVEHICLE"
+provideName5="base"
+
+// DLL
+startingVariant = "_vsr"
+pilotRespawnWithSniper = "csuser"
+pilotRespawnWithOutSniper = "csuser_m"
+
+[CraftClass]
+damageEffect1 = "dmgvhcl_c1"
+damageEffect2 = "dmgvhcl_c2"
+damageEffect3 = "dmgvhcl_c3"
+damageEffect4 = "dmgvhcl_c4"
+
+[TrackedVehicleClass]
+velocReverse = 10.0
+accelThrust = 50.0
+omegaSpin = 2.0
+
+[TrackedDeployableClass]
+
+[DeployBuildingClass]
+deployName = "cbrecy_vsr"
+
+[RecyclerVehicleClass]

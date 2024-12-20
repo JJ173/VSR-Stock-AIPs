@@ -1,6 +1,6 @@
 [Start]
 scavClass = "cvscavcpu_vsr"
-consClass = "cvcons_vsr"
+consClass = "cvconscpu_vsr"
 scrapCount = 40
 IdleAllCraft = true
 CheckProvides = true
@@ -213,7 +213,72 @@ attackType52_1 = "cvtank_vsr"
 attackType52_2 = "cvtank_vsr"
 attackType52_3 = "cvtank_vsr"
 
-[Plan1] // Unique plan for starting units. Send the Stock Scav to do something.
+[Plan1]
+planType = "BuildLoop"
+planPriority = 1000
+planCondition = "Lua"
+buildType1 = "apserv"
+buildCount1 = 2
+LuaFunction = "BuildServicePodCondition"
+
+[Plan2]
+planType = "Recover"
+planPriority = 990
+planCondition = "Lua"
+serviceUnit = "apserv"
+MinWreckAmmo = 0.2
+MaxWreckAmmo = 0.6
+MinWreckHealth = 0.3
+MaxWreckHealth = 0.45
+unitType1 = "cvscout_vsr"
+unitType2 = "cvtank_vsr"
+unitType3 = "cvrbomb_vsr"
+LuaFunction = "EarlyRecoverCondition"
+
+[Plan3]
+planType = "Recover"
+planPriority = 980
+planCondition = "Lua"
+serviceUnit = "cbsbay_vsr"
+MinWreckAmmo = 0.2
+MaxWreckAmmo = 0.4
+MinWreckHealth = 0.4
+MaxWreckHealth = 0.65
+unitType1 = "cvcons_vsr"
+unitType2 = "cvscout_vsr"
+unitType3 = "cvtank_vsr"
+unitType4 = "cvrbomb_vsr"
+unitType5 = "cvatank_vsr"
+unitType6 = "cvmlay_vsr"
+unitType7 = "cvhatank_vsr"
+LuaFunction = "ServiceBayRecoveryCondition"
+
+[Plan4]
+planType = "Service"
+planPriority = 970
+planCondition = "Lua"
+serviceUnit = "cvservcpu_vsr"
+MinWreckAmmo = 0.1
+MaxWreckAmmo = 0.7
+MinWreckHealth = 0.25
+MaxWreckHealth = 0.5
+RepairTime = 40
+unitType1 = "cvdcar_vsr"
+unitType2 = "cbgtow_vsr"
+unitType3 = "cbrecy_vsr"
+unitType4 = "cbfact_vsr"
+unitType5 = "cbcbun_vsr"
+unitType6 = "cbarmo_vsr"
+unitType7 = "cbtcen_vsr"
+unitType8 = "cbagen_vsr"
+unitType9 = "cbjamm_vsr"
+unitType10 = "cvhatank_vsr"
+unitType11 = "cvwalk_vsr"
+unitType12 = "cvcons_vsr"
+unitType13 = "cvgorg_vsr"
+LuaFunction = "ServiceTruckServiceCondition"
+
+[Plan5] // Unique plan for starting units. Send the Stock Scav to do something.
 planType = "CollectPool"
 planPriority = 400
 planCondition1 = "Exists"
@@ -224,7 +289,7 @@ scavClass = "cvscav"
 buildIfNoIdle = false
 ContinueEvenIfFail = true
 
-[Plan2] // Move the turrets out of the way of the Recycler deployment zone.
+[Plan6] // Move the turrets out of the way of the Recycler deployment zone.
 planType = "Hold"
 planPriority = 390
 planCondition1 = "Exists"
@@ -237,20 +302,20 @@ holdCount1 = 1
 maxTimes = 3
 buildIfNoIdle = false
 
-[Plan3] // Move the turrets out of the way of the Recycler deployment zone.
+[Plan7] // Move the turrets out of the way of the Recycler deployment zone.
 planType = "Hold"
 planPriority = 380
 planCondition1 = "Exists"
 planConditionClass1 = "cvturr"
 planConditionCount1 = 1
 planConditionClassProvided1 = true
-holdPoint = "turretEnemy2"
+holdPoint = "hold2"
 holdType1 = "cvturr"
 holdCount1 = 1
 maxTimes = 3
 buildIfNoIdle = false
 
-[Plan4]
+[Plan8]
 planType = "BuildMinimums"
 planPriority = 370
 planCondition = "Lua"
@@ -258,59 +323,59 @@ buildType1 = "cvscavcpu_vsr"
 buildCount1 = 4
 LuaFunction = "BuildScavengerCondition"
 
-[Plan5]
+[Plan9]
 planType = "CollectField"
 planPriority = 360
 planCondition = "Lua"
 ContinueEvenIfFail = true
 LuaFunction = "CollectFieldCondition"
 
-[Plan6]
+[Plan10]
 planType = "CollectPool"
 planPriority = 350
 planCondition = "Lua"
 ContinueEvenIfFail = true
 LuaFunction = "CollectPoolCondition"
 
-[Plan7]
+[Plan11]
 planType = "CollectField"
 planPriority = 340
 planCondition = "Lua"
 ContinueEvenIfFail = true
 LuaFunction = "CollectFieldCondition"
 
-[Plan8]
+[Plan12]
 planType = "CollectPool"
 planPriority = 330
 planCondition = "Lua"
 ContinueEvenIfFail = true
 LuaFunction = "CollectPoolCondition"
 
-[Plan9]
+[Plan13]
 planType = "BuildMinimums"
 planPriority = 320
 planCondition = "Lua"
-buildType1 = "cvcons_vsr"
+buildType1 = "cvconscpu_vsr"
 buildCount1 = 2
 LuaFunction = "BuildConstructorCondition"
 
-[Plan10]
+[Plan14]
 planType = "BuildMinimums"
 planPriority = 310
 planCondition = "Lua"
-buildType1 = "cvcons_upg_vsr"
+buildType1 = "cvcons_vsr"
 buildCount1 = 1
 LuaFunction = "BuildConstructorCondition"
 
-[Plan11]
+[Plan15]
 planType = "Upgrade"
 planPriority = 300
 planCondition = "Lua"
 unitType = "cbscav_vsr"
-consClass = "cvcons_upg_vsr"
+consClass = "cvcons_vsr"
 LuaFunction = "UpgradePoolCondition"
 
-[Plan12]
+[Plan16]
 planType = "BaseBuildLoop"
 planPriority = 290
 planCondition = "Lua"
@@ -318,13 +383,24 @@ buildType1 = "cbpgen_vsr"
 buildCount1 = 1
 LuaFunction = "BuildPowerLoopCondition"
 
-[Plan13]
+[Plan17] // Always pick at enemy Scavengers.
 planType = "Attacker"
 planPriority = 280
 planCondition = "Lua"
-targetType1 = "VIRTUAL_CLASS_EXTRACTOR"
-targetType2 = "DefendUnit"
-targetType3 = "VIRTUAL_CLASS_RECYCLER"
+targetType1 = "VIRTUAL_CLASS_SCAVENGER"
+targetType2 = "VIRTUAL_CLASS_EXTRACTOR"
+attackType1 = "cvscout_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+LuaFunction = "EarlyScavengerAttackCondition"
+maxAttacks = 99
+
+[Plan18]
+planType = "Attacker"
+planPriority = 275
+planCondition = "Lua"
+targetType1 = "DefendUnit"
+targetType2 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvscout_vsr"
 attackType2 = "cvscout_vsr"
 buildIfNoIdle = true
@@ -332,7 +408,7 @@ AttackAnything = true
 maxAttacks = 4
 LuaFunction = "EarlyScoutAttackCondition"
 
-[Plan14]
+[Plan19]
 planType = "BuildMinimums"
 planPriority = 270
 planCondition = "Lua"
@@ -340,7 +416,7 @@ buildType1 = "cvturr_vsr"
 buildCount1 = 3
 LuaFunction = "BuildTurretsCondition"
 
-[Plan15]
+[Plan20]
 planType = "BaseBuildMinimums"
 planPriority = 260
 planCondition = "Lua"
@@ -348,30 +424,31 @@ buildType1 = "cbfact_vsr"
 buildCount1 = 1
 LuaFunction = "BuildFactoryCondition"
 
-[Plan16]
+[Plan21]
 planType = "Attacker"
 planPriority = 250
 planCondition = "Lua"
 targetType1 = "DefendUnit"
-targetType2 = "VIRTUAL_CLASS_EXTRACTOR"
-targetType3 = "VIRTUAL_CLASS_RECYCLER"
+targetType2 = "Defender"
+targetType3 = "VIRTUAL_CLASS_EXTRACTOR"
+targetType4 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvtank_vsr"
 attackType2 = "cvtank_vsr"
-attackType3 = "cvtank_vsr"
+attackType3 = "cvscout_vsr"
 buildIfNoIdle = true
 AttackAnything = true
-maxAttacks = 5
+maxAttacks = 3
 LuaFunction = "EarlyTankAttackCondition"
 
-[Plan17]
-planType = "BuildMinimums"
-planPriority = 240
-planCondition = "Lua"
-buildType1 = "cvmlay_vsr"
-buildCount1 = 2
-LuaFunction = "BuildMineLayersCondition"
+//[Plan22] // Removed until I know if the Idle Dispatcher from BD works in IA.
+//planType = "BuildMinimums"
+//planPriority = 240
+//planCondition = "Lua"
+//buildType1 = "cvmlay_vsr"
+//buildCount1 = 2
+//LuaFunction = "BuildMineLayersCondition"
 
-[Plan18]
+[Plan23]
 planType = "BaseBuildMinimums"
 planPriority = 230
 planCondition = "Lua"
@@ -379,10 +456,133 @@ buildType1 = "cbcbun_vsr"
 buildCount1 = 1
 LuaFunction = "BuildRelayCondition"
 
-[Plan19]
+[Plan24]
 planType = "BaseBuildMinimums"
 planPriority = 220
 planCondition = "Lua"
 buildType1 = "cbarmo_vsr"
 buildCount1 = 1
 LuaFunction = "BuildArmoryCondition"
+
+[Plan25]
+planType = "Attacker"
+planPriority = 210
+planCondition = "Lua"
+targetType1 = "defender"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+targetType4 = "VIRTUAL_CLASS_ARMORY"
+targetType5 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvrbomb_vsr"
+attackType2 = "cvrbomb_vsr"
+attackType3 = "cvtank_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 4
+LuaFunction = "FirstRocketBomberAttackCondition"
+
+[Plan26]
+planType = "BaseBuildMinimums"
+planPriority = 200
+planCondition = "Lua"
+buildType1 = "cbgtow_vsr"
+buildCount1 = 2
+LuaFunction = "BuildGunTowersCondition"
+
+[Plan27]
+planType = "BaseBuildMinimums"
+planPriority = 190
+planCondition = "Lua"
+buildType1 = "cbsbay_vsr"
+buildCount1 = 1
+LuaFunction = "BuildServiceBayCondition"
+
+[Plan28]
+planType = "BuildMinimums"
+planPriority = 180
+planCondition = "Lua"
+buildType1 = "cvservcpu_vsr"
+buildCount1 = 5
+LuaFunction = "BuildServiceTrucksCondition"
+
+[Plan29]
+planType = "Attacker"
+planPriority = 170
+planCondition = "Lua"
+targetType1 = "defender"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+targetType4 = "VIRTUAL_CLASS_ARMORY"
+targetType5 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType6 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType7 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvdcarcpu_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "DroneCarrierAttackCondition"
+
+// Some defenses around the base paths.
+[Plan30]
+planType = "BaseBuildMinimums"
+planPriority = 160
+planCondition = "Lua"
+buildType1 = "cbgtow_vsr"
+buildCount1 = 2
+buildLoc1 = "gtow1"
+LuaFunction = "BuildGunTowersAtGtow1Condition"
+pathpointsCanBeMissing = true // Prevents errors in console. We can handle that in Lua.
+
+[Plan31]
+planType = "Attacker"
+planPriority = 150
+planCondition = "Lua"
+targetType1 = "defender"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+targetType4 = "VIRTUAL_CLASS_ARMORY"
+targetType5 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvatank_vsr"
+attackType2 = "cvatank_vsr"
+attackType3 = "cvhatank_vsr"
+attackType4 = "cvhatank_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 4
+LuaFunction = "SecondRocketBomberAttackCondition"
+
+// Some defenses around the base paths.
+[Plan32]
+planType = "BaseBuildMinimums"
+planPriority = 140
+planCondition = "Lua"
+buildType1 = "cbgtow_vsr"
+buildCount1 = 2
+buildLoc1 = "gtow2"
+LuaFunction = "BuildGunTowersAtGtow2Condition"
+pathpointsCanBeMissing = true // Prevents errors in console. We can handle that in Lua.
+
+[Plan33]
+planType = "Attacker"
+planPriority = 130
+planCondition = "Lua"
+targetType1 = "defender"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+targetType4 = "VIRTUAL_CLASS_ARMORY"
+targetType5 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType6 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType7 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvdcarcpu_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "DroneCarrierAttackCondition"
+
+[Plan34]
+planType = "BaseBuildMinimums"
+planPriority = 120
+planCondition = "Lua"
+buildType1 = "cbjamm_vsr"
+buildCount1 = 1
+LuaFunction = "BuildJammerCondition"

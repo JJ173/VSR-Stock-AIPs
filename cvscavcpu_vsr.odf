@@ -2,6 +2,9 @@
 classLabel = "cvscav_vsr"
 StayWithOwner = true
 
+scrapCost = 10
+buildTime = 5.0
+
 /////// PROVIDES ///////////////////
 
 provideCount = 3

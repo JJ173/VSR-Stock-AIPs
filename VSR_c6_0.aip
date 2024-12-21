@@ -586,3 +586,11 @@ planCondition = "Lua"
 buildType1 = "cbjamm_vsr"
 buildCount1 = 1
 LuaFunction = "BuildJammerCondition"
+
+[Plan35]
+planType = "BaseBuildMinimums"
+planPriority = 110
+planCondition = "Lua"
+buildType1 = "cbtcen_vsr"
+buildCount1 = 1
+LuaFunction = "BuildTechCenterCondition"

@@ -247,6 +247,26 @@ function BuildJammerCondition(team, time)
     return true, "I can build a Jammer. Attempting to task a Constructor to build...";
 end
 
+function BuildTechCenterCondition(team, time)
+    if (DoesConstructorExist(team, time) == false) then
+        return false, "I don't have a Constructor yet.";
+    end
+
+    if (DoesServiceBayExist(team, time) == false) then
+        return false, "I don't have a Service Bay yet. Build a Service Bay first.";
+    end
+
+    if (DoesArmoryExist(team, time) == false) then
+        return false, "I don't have an Armory so I can't build a Tech Center.";
+    end
+
+    if (AIPUtil.GetScrap(team, false) < 80) then
+        return false, "I don't have enough scrap for a Tech Center.";
+    end
+
+    return true, "I can build a Tech Center. Attempting to task a Constructor to build...";
+end
+
 function BuildTurretsCondition(team, time)
     -- Make sure we have a pool first.
     if (ExtractorCount(team, time) <= 0) then

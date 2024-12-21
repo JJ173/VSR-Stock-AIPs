@@ -220,6 +220,10 @@ function BuildServiceBayCondition(team, time)
         return false, "I don't have a Factory yet. Build a Factory first.";
     end
 
+    if (DoesArmoryExist(team, time) == false) then
+        return false, "I don't have an Armory yet. Build an Armory first.";
+    end
+
     if (AIPUtil.GetScrap(team, false) < 50) then
         return false, "I don't have enough scrap for a Service Bay.";
     end
@@ -265,6 +269,26 @@ function BuildTechCenterCondition(team, time)
     end
 
     return true, "I can build a Tech Center. Attempting to task a Constructor to build...";
+end
+
+function BuildAntiMatterCondition(team, time)
+    if (DoesConstructorExist(team, time) == false) then
+        return false, "I don't have a Constructor yet.";
+    end
+
+    if (DoesServiceBayExist(team, time) == false) then
+        return false, "I don't have a Service Bay yet. Build a Service Bay first.";
+    end
+
+    if (DoesArmoryExist(team, time) == false) then
+        return false, "I don't have an Armory so I can't build an Anti-Matter Generator.";
+    end
+
+    if (AIPUtil.GetScrap(team, false) < 120) then
+        return false, "I don't have enough scrap for an Anti-Matter Generator.";
+    end
+
+    return true, "I can build an Anti-Matter Generator. Attempting to task a Constructor to build...";
 end
 
 function BuildTurretsCondition(team, time)
@@ -424,6 +448,10 @@ function FirstRocketBomberAttackCondition(team, time)
         return false, "I don't have an Armory so I can't attack.";
     end
 
+    if (DoesServiceBayExist(team, time)) then
+        return false, "I have a Service Bay, let's move on to more advanced attacks.";
+    end
+
     return true, "I am going to send Rocket Bombers to attack.";
 end
 
@@ -480,6 +508,23 @@ function LateDroneCarrierAttackCondition(team, time)
     end
 
     return true, "15 minutes has passed. Tasking Factory to build a Drone Carrier...";
+end
+
+function FinalAttacksCondition(team, time)
+    -- Make sure we have a pool first.
+    if (ExtractorCount(team, time) <= 0) then
+        return false, "I don't have any deployed Scavengers yet.";
+    end
+
+    if (DoesFactoryExist(team, time) == false) then
+        return false, "I don't have a Factory so I can't attack.";
+    end
+
+    if (DoesTechCenterExist(team, time) == false) then
+        return false, "I don't have a Tech Center yet so I can't attack.";
+    end
+
+    return true, "I have finished building my base, time for late attacks.";
 end
 
 -- RECOVER / SERVICE PLAN CONDITIONS.
@@ -554,6 +599,10 @@ end
 
 function DoesArmoryExist(team, time)
     return AIPUtil.CountUnits(team, "VIRTUAL_CLASS_ARMORY", "sameteam", true) > 0;
+end
+
+function DoesTechCenterExist(team, time)
+    return AIPUtil.CountUnits(team, "VIRTUAL_CLASS_TECHCENTER", "sameteam", true) > 0;
 end
 
 function DoesServiceBayExist(team, time)

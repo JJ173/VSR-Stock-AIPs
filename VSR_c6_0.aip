@@ -433,7 +433,7 @@ targetType2 = "Defender"
 targetType3 = "VIRTUAL_CLASS_EXTRACTOR"
 targetType4 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvtank_vsr"
-attackType2 = "cvtank_vsr"
+attackType2 = "cvscout_vsr"
 attackType3 = "cvscout_vsr"
 buildIfNoIdle = true
 AttackAnything = true
@@ -474,7 +474,7 @@ targetType3 = "VIRTUAL_CLASS_FACTORY"
 targetType4 = "VIRTUAL_CLASS_ARMORY"
 targetType5 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvrbomb_vsr"
-attackType2 = "cvrbomb_vsr"
+attackType2 = "cvtank_vsr"
 attackType3 = "cvtank_vsr"
 buildIfNoIdle = true
 AttackAnything = true
@@ -543,9 +543,7 @@ targetType3 = "VIRTUAL_CLASS_FACTORY"
 targetType4 = "VIRTUAL_CLASS_ARMORY"
 targetType5 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvatank_vsr"
-attackType2 = "cvatank_vsr"
-attackType3 = "cvhatank_vsr"
-attackType4 = "cvhatank_vsr"
+attackType2 = "cvhatank_vsr"
 buildIfNoIdle = true
 AttackAnything = true
 maxAttacks = 4
@@ -577,7 +575,7 @@ attackType1 = "cvdcarcpu_vsr"
 buildIfNoIdle = true
 AttackAnything = true
 maxAttacks = 99
-LuaFunction = "DroneCarrierAttackCondition"
+LuaFunction = "LateDroneCarrierAttackCondition"
 
 [Plan34]
 planType = "BaseBuildMinimums"
@@ -594,3 +592,79 @@ planCondition = "Lua"
 buildType1 = "cbtcen_vsr"
 buildCount1 = 1
 LuaFunction = "BuildTechCenterCondition"
+
+[Plan36]
+planType = "Attacker"
+planPriority = 100
+planCondition = "Lua"
+targetType1 = "defender"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+targetType4 = "VIRTUAL_CLASS_ARMORY"
+targetType5 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType6 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType7 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvwalk_vsr"
+attackType2 = "cvwalk_vsr"
+attackType3 = "cvtalon_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "FinalAttacksCondition"
+
+[Plan37]
+planType = "BaseBuildMinimums"
+planPriority = 90
+planCondition = "Lua"
+buildType1 = "cbagen_vsr"
+buildCount1 = 1
+LuaFunction = "BuildAntiMatterCondition"
+
+[Plan38]
+planType = "Attacker"
+planPriority = 80
+planCondition = "Lua"
+targetType1 = "DefendUnit"
+targetType2 = "defender"
+targetType3 = "VIRTUAL_CLASS_POWERPLANT"
+targetType4 = "VIRTUAL_CLASS_FACTORY"
+targetType5 = "VIRTUAL_CLASS_ARMORY"
+targetType6 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType7 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType8 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvtalon_vsr"
+attackType2 = "cvtalon_vsr"
+attackType3 = "cvtalon_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "FinalAttacksCondition"
+
+[Plan39]
+planType = "Attacker"
+planPriority = 70
+planCondition = "Lua"
+targetType1 = "DefendUnit"
+targetType2 = "defender"
+targetType3 = "VIRTUAL_CLASS_POWERPLANT"
+targetType4 = "VIRTUAL_CLASS_FACTORY"
+targetType5 = "VIRTUAL_CLASS_ARMORY"
+targetType6 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType7 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType8 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvscout_vsr"
+attackType2 = "cvscout_vsr"
+attackType3 = "cvtank_vsr"
+attackType4 = "cvatank_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "FinalAttacksCondition"
+
+[Plan40]
+planType = "BaseBuildMinimums"
+planPriority = 60
+planCondition = "Lua"
+buildType1 = "cbgtow_vsr"
+buildCount1 = 2
+LuaFunction = "BuildGunTowersCondition"

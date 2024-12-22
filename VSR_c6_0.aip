@@ -1,3 +1,8 @@
+// Cerberi Stock VSR AIP
+// Written by AI_Unit
+// Version 1.0
+// Date Modified 22/12/2024.
+
 [Start]
 scavClass = "cvscavcpu_vsr"
 consClass = "cvconscpu_vsr"
@@ -11,7 +16,7 @@ baseLoc = "RecyclerEnemy" // Tested before, and this makes the Recycler deploy f
 
 [IdleDispatcher]
 ScavIdleSeconds = 2
-UnitIdleSeconds = 10
+UnitIdleSeconds = 75
 MinAttackForce = 2
 MaxAttackForce = 6
 MaxPatrolUnits = 3
@@ -289,31 +294,31 @@ scavClass = "cvscav"
 buildIfNoIdle = false
 ContinueEvenIfFail = true
 
-[Plan6] // Move the turrets out of the way of the Recycler deployment zone.
-planType = "Hold"
-planPriority = 390
-planCondition1 = "Exists"
-planConditionClass1 = "cvturr"
-planConditionCount1 = 1
-planConditionClassProvided1 = true
-holdPoint = "turretEnemy1"
-holdType1 = "cvturr"
-holdCount1 = 1
-maxTimes = 3
-buildIfNoIdle = false
+//[Plan6] // Move the turrets out of the way of the Recycler deployment zone.
+//planType = "Hold"
+//planPriority = 390
+//planCondition1 = "Exists"
+//planConditionClass1 = "cvturr"
+//planConditionCount1 = 1
+//planConditionClassProvided1 = true
+//holdPoint = "turretEnemy1"
+//holdType1 = "cvturr"
+//holdCount1 = 1
+//maxTimes = 3
+//buildIfNoIdle = false
 
-[Plan7] // Move the turrets out of the way of the Recycler deployment zone.
-planType = "Hold"
-planPriority = 380
-planCondition1 = "Exists"
-planConditionClass1 = "cvturr"
-planConditionCount1 = 1
-planConditionClassProvided1 = true
-holdPoint = "hold2"
-holdType1 = "cvturr"
-holdCount1 = 1
-maxTimes = 3
-buildIfNoIdle = false
+//[Plan7] // Move the turrets out of the way of the Recycler deployment zone.
+//planType = "Hold"
+//planPriority = 380
+//planCondition1 = "Exists"
+//planConditionClass1 = "cvturr"
+//planConditionCount1 = 1
+//planConditionClassProvided1 = true
+//holdPoint = "hold2"
+//holdType1 = "cvturr"
+//holdCount1 = 1
+//maxTimes = 3
+//buildIfNoIdle = false
 
 [Plan8]
 planType = "BuildMinimums"
@@ -440,13 +445,13 @@ AttackAnything = true
 maxAttacks = 3
 LuaFunction = "EarlyTankAttackCondition"
 
-//[Plan22] // Removed until I know if the Idle Dispatcher from BD works in IA.
-//planType = "BuildMinimums"
-//planPriority = 240
-//planCondition = "Lua"
-//buildType1 = "cvmlay_vsr"
-//buildCount1 = 2
-//LuaFunction = "BuildMineLayersCondition"
+[Plan22] // Removed until I know if the Idle Dispatcher from BD works in IA.
+planType = "BuildMinimums"
+planPriority = 240
+planCondition = "Lua"
+buildType1 = "cvmlay_vsr"
+buildCount1 = 2
+LuaFunction = "BuildMineLayersCondition"
 
 [Plan23]
 planType = "BaseBuildMinimums"
@@ -544,6 +549,7 @@ targetType4 = "VIRTUAL_CLASS_ARMORY"
 targetType5 = "VIRTUAL_CLASS_RECYCLER"
 attackType1 = "cvatank_vsr"
 attackType2 = "cvhatank_vsr"
+attackType3 = "cvhatank_vsr"
 buildIfNoIdle = true
 AttackAnything = true
 maxAttacks = 4
@@ -581,21 +587,29 @@ LuaFunction = "LateDroneCarrierAttackCondition"
 planType = "BaseBuildMinimums"
 planPriority = 120
 planCondition = "Lua"
-buildType1 = "cbjamm_vsr"
+buildType1 = "cbtcen_vsr"
 buildCount1 = 1
-LuaFunction = "BuildJammerCondition"
+LuaFunction = "BuildTechCenterCondition"
 
 [Plan35]
 planType = "BaseBuildMinimums"
 planPriority = 110
 planCondition = "Lua"
-buildType1 = "cbtcen_vsr"
+buildType1 = "cbjamm_vsr"
 buildCount1 = 1
-LuaFunction = "BuildTechCenterCondition"
+LuaFunction = "BuildJammerCondition"
 
 [Plan36]
-planType = "Attacker"
+planType = "BaseBuildMinimums"
 planPriority = 100
+planCondition = "Lua"
+buildType1 = "cbagen_vsr"
+buildCount1 = 1
+LuaFunction = "BuildAntiMatterCondition"
+
+[Plan37]
+planType = "Attacker"
+planPriority = 90
 planCondition = "Lua"
 targetType1 = "defender"
 targetType2 = "VIRTUAL_CLASS_POWERPLANT"
@@ -612,37 +626,9 @@ AttackAnything = true
 maxAttacks = 99
 LuaFunction = "FinalAttacksCondition"
 
-[Plan37]
-planType = "BaseBuildMinimums"
-planPriority = 90
-planCondition = "Lua"
-buildType1 = "cbagen_vsr"
-buildCount1 = 1
-LuaFunction = "BuildAntiMatterCondition"
-
 [Plan38]
 planType = "Attacker"
 planPriority = 80
-planCondition = "Lua"
-targetType1 = "DefendUnit"
-targetType2 = "defender"
-targetType3 = "VIRTUAL_CLASS_POWERPLANT"
-targetType4 = "VIRTUAL_CLASS_FACTORY"
-targetType5 = "VIRTUAL_CLASS_ARMORY"
-targetType6 = "VIRTUAL_CLASS_SUPPLYDEPOT"
-targetType7 = "VIRTUAL_CLASS_COMMBUNKER"
-targetType8 = "VIRTUAL_CLASS_RECYCLER"
-attackType1 = "cvtalon_vsr"
-attackType2 = "cvtalon_vsr"
-attackType3 = "cvtalon_vsr"
-buildIfNoIdle = true
-AttackAnything = true
-maxAttacks = 99
-LuaFunction = "FinalAttacksCondition"
-
-[Plan39]
-planType = "Attacker"
-planPriority = 70
 planCondition = "Lua"
 targetType1 = "DefendUnit"
 targetType2 = "defender"
@@ -661,10 +647,30 @@ AttackAnything = true
 maxAttacks = 99
 LuaFunction = "FinalAttacksCondition"
 
+[Plan39]
+planType = "Attacker"
+planPriority = 70
+planCondition = "Lua"
+targetType1 = "DefendUnit"
+targetType2 = "defender"
+targetType3 = "VIRTUAL_CLASS_POWERPLANT"
+targetType4 = "VIRTUAL_CLASS_FACTORY"
+targetType5 = "VIRTUAL_CLASS_ARMORY"
+targetType6 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType7 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType8 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "cvtalon_vsr"
+attackType2 = "cvtalon_vsr"
+attackType3 = "cvtalon_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 99
+LuaFunction = "FinalAttacksCondition"
+
 [Plan40]
-planType = "BaseBuildMinimums"
+planType = "BuildMinimums"
 planPriority = 60
 planCondition = "Lua"
-buildType1 = "cbgtow_vsr"
+buildType1 = "cvgorg_vsr"
 buildCount1 = 2
-LuaFunction = "BuildGunTowersCondition"
+LuaFunction = "BuildGorgonsCondition"

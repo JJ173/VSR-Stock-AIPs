@@ -351,6 +351,26 @@ function BuildServiceTrucksCondition(team, time)
     return true, "I can build a Service Truck. Attempting to task the Recycler to build...";
 end
 
+function BuildGorgonsCondition(team, time)
+    if (ExtractorCount(team, time) <= 0) then
+        return false, "I don't have any deployed Scavengers yet.";
+    end
+
+    if (DoesFactoryExist(team, time) == false) then
+        return false, "I don't have a Factory yet. Build a Factory first.";
+    end
+
+    if (AIPUtil.CountUnits(team, "cbagen_vsr", "sameteam", false) <= 0) then
+        return false, "I don't have an Anti-Matter Generator so I can't build a Gorgon.";
+    end
+
+    if (AIPUtil.GetScrap(team, false) < 110) then
+        return false, "I don't have enough scrap for a Gorgon.";
+    end
+
+    return true, "I can build a Gorgon. Attempting to task the Factory to build...";
+end
+
 function UpgradePoolCondition(team, time)
     if (DoesConstructorExist(team, time) == false) then
         return false, "I don't have a Constructor yet.";
@@ -446,10 +466,6 @@ function FirstRocketBomberAttackCondition(team, time)
 
     if (DoesArmoryExist(team, time) == false) then
         return false, "I don't have an Armory so I can't attack.";
-    end
-
-    if (DoesServiceBayExist(team, time)) then
-        return false, "I have a Service Bay, let's move on to more advanced attacks.";
     end
 
     return true, "I am going to send Rocket Bombers to attack.";

@@ -1,0 +1,347 @@
+[Start]
+consClass="ivconscpu_vsr"
+scavClass="ivscavcpu_vsr"
+scrapCount = 40
+IdleAllCraft = true
+CheckProvides = true
+unitsService = true
+Difficulty = 2 // 1=Easy, 2=Medium, 3=Hard, 4=Extreme
+DLLCanSwitch = false // BD has confirmed that VSR does not switch DLLs, so to prevent any weird issues with undeploying, etc, just lock this.
+baseLoc = "RecyclerEnemy" // Tested before, and this makes the Recycler deploy faster, so we will use it.
+
+[IdleDispatcher]
+ScavIdleSeconds = 1
+UnitIdleSeconds = 120
+BomberIdleSeconds = 0
+MaxBomberTargets = 0
+MinAttackForce = 3
+MaxAttackForce = 99
+MinMissionSeconds = 5
+MaxPatrolUnits = 3
+MaxHuntUnits = 3
+
+[Cheat]
+moneyAmount = 20
+moneyDelay = 10
+
+[Plan1]
+planType = "BuildMinimums"
+planPriority = 300
+planCondition = "Lua"
+buildType1 = "ivscavcpu_vsr"
+buildCount1 = 3
+LuaFunction = "BuildScavengerCondition"
+
+[Plan2]
+planType = "CollectPool"
+planPriority = 290
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan3]
+planType="BuildMinimums"
+planPriority = 280
+buildType1 = "ivscout12smartvsr"
+buildCount1 = 2
+buildType2 = "ivturr_vsr"
+buildCount2 = 4
+buildType3 = "ivconscpu_vsr"
+buildCount3 = 2
+
+[Plan4]
+planType = "CollectPool"
+planPriority = 270
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan5]
+planType = "Attacker"
+planPriority = 260
+targetType1 = "VIRTUAL_CLASS_EXTRACTOR"
+targetType2 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "ivscout_vsr"
+attackType2 = "ivscout_vsr"
+attackType3 = "ivscout12smartvsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 4
+
+[Plan6]
+planType = "BaseBuildMinimums"
+planPriority = 250
+buildType1 = "ibpgen_vsr"
+buildCount1 = 2
+buildType2 = "ibcbun_vsr"
+buildType3 = "ibfact_vsr"
+
+[Plan7]
+planType = "BuildMinimums"
+planPriority = 240
+buildType1 = "ivscout12smartvsr"
+buildCount1 = 2
+
+[Plan8]
+planType = "CollectPool"
+planPriority = 230
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan9]
+planType = "Attacker"
+planPriority = 220
+targetType1 = "VIRTUAL_CLASS_TURRET"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "ivtank_vsr"
+attackType2 = "ivtank_vsr"
+attackType3 = "ivtank_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 3
+
+[Plan10]
+planType = "BuildMinimums"
+planPriority = 210
+buildType1 = "ivturr_vsr"
+buildCount1 = 6
+
+[Plan11]
+planType = "CollectPool"
+planPriority = 200
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan12]
+planType = "BaseBuildMinimums"
+planPriority = 190
+buildType1 = "ibpgen_vsr"
+buildCount1 = 3
+buildType2 = "ibarmo_vsr"
+buildType3 = "ibsbay_vsr"
+
+[Plan13]
+planType = "Attacker"
+planPriority = 180
+targetType1 = "VIRTUAL_CLASS_TURRET"
+targetType2 = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "ivmbike_vsr"
+attackType2 = "ivmbike_vsr"
+attackType3 = "ivmbike_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 3
+
+[Plan14]
+planType = "BuildMinimums"
+planPriority = 170
+buildType1 = "ivscout12smartvsr"
+buildCount1 = 2
+
+[Plan15]
+planType = "BaseBuildMinimums"
+planPriority = 160
+buildType1 = "ibpgen_vsr"
+buildCount1 = 4
+buildType2 = "ibtcen_vsr"
+buildtype3 = "ibtrain_vsr"
+
+[Plan16]
+planType = "Attacker"
+planPriority = 150
+targetType1 = "VIRTUAL_CLASS_POWERPLANT"
+targetType2 = "VIRTUAL_CLASS_COMMBUNKER"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+attackType1 = "ivrckt_vsr"
+attackType2 = "ivrckt_vsr"
+attackType3 = "ivrckt_vsr"
+BuildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 3
+
+[Plan17]
+planType = "BuildMinimums"
+planPriority = 140
+buildType1 = "ivwalk_vsr"
+buildCount1 = 3
+
+[Plan18]
+planType = "BaseBuildMinimums"
+planPriority = 130
+buildType1 = "ibpgen_vsr"
+buildCount1 = 5
+buildType2 = "ibgtow_vsr"
+buildCount2 = 3
+
+[Plan19]
+planType = "Attacker"
+planPriority = 120
+targetType1 = "VIRTUAL_CLASS_GUNTOWER"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_ARMORY"
+attackType1 = "ivwalk_vsr"
+attackType2 = "ivwalk_vsr"
+attackType3 = "ivwalk_vsr"
+AttackAnything = true
+maxAttacks = 2
+
+[Plan20]
+planType = "BuildMinimums"
+planPriority = 110
+buildType1 = "ivmbike_vsr"
+buildCount1 = 3
+
+[Plan21]
+planType = "BaseBuildMinimums"
+planPriority = 100
+buildType1 = "ibpgen_vsr"
+buildCount1 = 5
+buildType2 = "ibgtow_vsr"
+buildCount2 = 3
+
+[Plan22]
+planType = "BuildMinimums"
+planPriority = 90
+buildType1 = "ivservcpu_vsr"
+buildCount1 = 3
+
+[Plan23]
+planType = "CollectPool"
+planPriority = 80
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan24]
+planType = "BaseBuildMinimums"
+planPriority = 70
+buildType1 = "ibpgen_vsr"
+buildCount1 = 6
+buildType2 = "ibgtow_vsr"
+buildCount2 = 5
+
+[Plan25]
+planType = "BuildMinimums"
+planPriority = 60
+buildType1 = "ivrbomb_12svsr"
+buildCount1 = 3
+
+[Plan26]
+planType = "CollectPool"
+planPriority = 50
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan27]
+planType = "Attacker"
+planPriority = 40
+targetType1 = "VIRTUAL_CLASS_ARMORY"
+targetType2 = "VIRTUAL_CLASS_POWERPLANT"
+targetType3 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+attackType1 = "ivrbomb_12svsr"
+attackType2 = "ivrbomb_12svsr"
+attackType3 = "ivrbomb_12svsr"
+attackType4 = "ivmbike_vsr"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 2
+
+[Plan28]
+planType = "BuildMinimums"
+planPriority = 35
+buildType1 = "ivatank_vsr"
+buildCount1 = 3
+
+[Plan29]
+planType = "CollectPool"
+planPriority = 30
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan30]
+planType = "Attacker"
+planPriority = 25
+targetType1 = "VIRTUAL_CLASS_SUPPLYDEPOT"
+targetType2 = "VIRTUAL_CLASS_ARMORY"
+targetType3 = "VIRTUAL_CLASS_FACTORY"
+attackType1 = "ivatank_vsr"
+attackType2 = "ivatank_vsr"
+attackType3 = "ivmbike_vsr"
+AttackAnything = true
+maxAttacks = 3
+
+[Plan31]
+planType = "BuildMinimums"
+planPriority = 20
+buildType1 = "ivapc"
+buildCount1 = 3
+
+[Plan32]
+planType = "CollectPool"
+planPriority = 15
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan33]
+planType = "Attacker"
+planPriority = 10
+targetType1 = "VIRTUAL_CLASS_FACTORY"
+targetType2 = "VIRTUAL_CLASS_RECYCLER"
+targetType3 = "VIRTUAL_CLASS_TECHCENTER"
+attackType1 = "ivapc"
+attackType2 = "ivapc"
+attackType3 = "ivapc"
+buildIfNoIdle = true
+AttackAnything = true
+maxAttacks = 4
+
+[Plan34]
+planType = "BuildMinimums"
+planPriority = 5
+buildType1 = "ivwalk_vsr"
+buildCount1 = 2
+
+[Plan35]
+planType = "CollectPool"
+planPriority = 4
+planCondition = "Lua"
+ContinueEvenIfFail = true
+LuaFunction = "CollectPoolCondition"
+
+[Plan36]
+planType = "Attacker"
+planPriority = 3
+targetType1 = "VIRTUAL_CLASS_TECHCENTER"
+targetType2 = "VIRTUAL_CLASS_ARMORY"
+attackType1 = "ivapc"
+attackType2 = "ivapc"
+AttackAnything = true
+maxAttacks = 2
+
+[Plan37]
+planType = "Attacker"
+planPriority = 2
+targetType = "VIRTUAL_CLASS_EXTRACTOR"
+attackType1 = "ivapc"
+attackType2 = "ivapc"
+attackType3 = "ivapc"
+AttackAnything = true
+maxAttacks = 2
+buildIfNoIdle = 1
+
+[Plan38]
+planType = "Attacker"
+planPriority = 1
+targetType = "VIRTUAL_CLASS_RECYCLER"
+attackType1 = "ivwalk_vsr"
+attackType2 = "ivwalk_vsr"
+attackType3 = "ivwalk_vsr"
+AttackAnything = true
+maxAttacks = 3
+buildIfNoIdle = 1

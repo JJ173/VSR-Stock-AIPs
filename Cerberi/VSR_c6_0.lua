@@ -509,10 +509,6 @@ function DroneCarrierAttackCondition(team, time)
     if (DoesFactoryExist(team, time) == false) then
         return false, "I don't have a Factory so I can't attack.";
     end
-	
-	if (DoesTechCenterExist(team, time) == false) then
-        return false, "I don't have a Tech Center yet so I can't attack.";
-    end
 
     return true, "10 minutes has passed. Tasking Factory to build a Drone Carrier...";
 end
